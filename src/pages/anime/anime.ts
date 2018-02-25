@@ -16,7 +16,7 @@ export class AnimePage {
   public genero;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private tibauProvider: TibauProvider) {
-    this.tibauProvider.goToAnime(this.navParams.get('letraSelecionada'), this.navParams.get('animeSelecionado')).then(data => {
+    this.tibauProvider.goToAnime(this.navParams.get('letraSelecionada'), this.navParams.get('animeSelecionado')).then(data => { 
       this.listaEpisodios = (<any>Object).values(data["episodios"]);
       this.animeInfo = data["informacoes"];
       this.nome = this.animeInfo.nome;
@@ -25,11 +25,14 @@ export class AnimePage {
     })
   }
 
- goToEpisode(titulo, url) {
+ goToEpisode(titulo, url, prev, next) {
    this.navCtrl.push(EpisodioPage, {
      episodioUrl: url, 
-     episodioTitulo: titulo
-   });
+     episodioTitulo: titulo,
+     letraSelecionada: this.navParams.get('letraSelecionada'),
+     episodioAnterior: prev,
+     episodioSeguinte: next
+  });
  }
 
 }

@@ -14,13 +14,13 @@
         Informações úteis
       </ion-card-header>
       <ion-card-content>
-        <p><strong>Atenção: </strong> se houver um link quebrado, por favor, nos informe, consertaremos o mais rápido possível. </p>
+        <p><strong>Atenção: </strong> se houver um link quebrado, por favor, nos informe, clicando no botão de link quebrado, consertaremos o mais rápido possível. </p>
 
         <ion-grid>
           <ion-row class="btn-group">
-            <ion-col col-4><button block ion-button color="cor1"><ion-icon name="arrow-back"></ion-icon></button></ion-col>
+            <ion-col col-4><button block ion-button color="secondary"><ion-icon name="arrow-back"></ion-icon></button></ion-col>
             <ion-col col-4><button block ion-button color="primary"><ion-icon name="cloud-download"></ion-icon></button></ion-col>
-            <ion-col col-4><button block ion-button color="cor2"><ion-icon name="arrow-forward"></ion-icon></button></ion-col>
+            <ion-col col-4><button block ion-button color="secondary" (click)="changeEpisode(proximoEpisodio)"><ion-icon name="arrow-forward"></ion-icon></button></ion-col>
           </ion-row>
         </ion-grid>
       </ion-card-content>
@@ -39,7 +39,7 @@
             <ion-col col-6><button block ion-button color="cor1"><ion-icon name="play" class="icone-margin" (click)="assistirEpisodio()"></ion-icon> Assistir</button></ion-col>
             <ion-col col-6><button block ion-button color="primary"><ion-icon name="star" class="icone-margin"></ion-icon> Favoritar</button></ion-col>
           </ion-row>
-          <button ion-button block color="carrot"><ion-icon name="alert" class="icone-margin"></ion-icon> Episódio com link quebrado.</button>
+          <button ion-button block color="carrot"><ion-icon name="alert" class="icone-margin"></ion-icon> Episódio com link quebrado?</button>
         </ion-grid>
       </ion-card-content>
     </ion-card>

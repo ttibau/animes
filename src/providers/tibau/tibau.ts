@@ -69,4 +69,25 @@ export class TibauProvider {
     return promise;
   }
 
+  // Vai pegar os dados do episódio à frente ou atrás
+  handleEpisode(episode){
+    let loading = this.loadingCtrl.create({
+      content: 'Carregando episódio...'
+    });
+    loading.present();
+
+    let promise = new Promise((resolve, reject) => {
+      this.db.object(episode.toString()).valueChanges().subscribe(data => {
+        console.log(episode);
+        console.log(data);
+        loading.dismiss();
+        resolve(data);
+      }, error => {
+        loading.dismiss();
+        reject(error);
+      })
+    })
+    return promise;
+  }
+
 }
