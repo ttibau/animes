@@ -33,10 +33,10 @@
         Episódio
       </ion-card-header>
       <ion-card-content>
-        <p class="titulo-episodio">One Piece - 897</p>
+        <p class="titulo-episodio">{{ episodioTitulo }}</p>
         <ion-grid>
           <ion-row class="btn-group">
-            <ion-col col-6><button block ion-button color="cor1"><ion-icon name="play" class="icone-margin" (click)="assistirAnime()"></ion-icon> Assistir</button></ion-col>
+            <ion-col col-6><button block ion-button color="cor1"><ion-icon name="play" class="icone-margin" (click)="assistirEpisodio()"></ion-icon> Assistir</button></ion-col>
             <ion-col col-6><button block ion-button color="primary"><ion-icon name="star" class="icone-margin"></ion-icon> Favoritar</button></ion-col>
           </ion-row>
           <button ion-button block color="carrot"><ion-icon name="alert" class="icone-margin"></ion-icon> Episódio com link quebrado.</button>

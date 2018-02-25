@@ -8,8 +8,23 @@ import { StreamingMedia, StreamingVideoOptions } from '@ionic-native/streaming-m
   templateUrl: 'episodio.html',
 })
 export class EpisodioPage {
+  public episodioTitulo;
+  public episodioUrl;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private streamingMedia: StreamingMedia) {
+    this.episodioTitulo = this.navParams.get('episodioTitulo');
+    this.episodioUrl =  this.navParams.get('episodioUrl');
+    console.log(this.episodioTitulo, this.episodioUrl);
+  }
+
+  assistirEpisodio(){
+    let options: StreamingVideoOptions = {
+      successCallback: () => { console.log('Video played') },
+      errorCallback: (e) => { alert('Error streaming'); alert(e) },
+      orientation: 'landscape'
+    };
+    
+    this.streamingMedia.playVideo(this.episodioUrl, options);
   }
 
   assistirAnime(){

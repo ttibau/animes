@@ -12,10 +12,11 @@
   <div class="main-card">
     <ion-card>
       <ion-card-header>
-        NomeDoAnime
+        {{ nome }}
       </ion-card-header>
       <ion-card-content>
-        <p>Aqui vai uma descrição muito breve do anime</p>
+        <p>{{ sinopse }}</p>
+        <p>{{ genero }}</p>
         <div class="button-group">
             <button ion-button color="danger"><ion-icon name="heart"></ion-icon> Favorito</button>
         </div>
@@ -31,10 +32,7 @@
     </ion-card-header>
     <ion-card-content>
       <ion-list>
-        <button (click)="goToEpisode()" color="secundaria" ion-item>01</button>
-        <button color="secundaria" ion-item>02</button>
-        <button color="secundaria" ion-item>03</button>
-        <button color="secundaria" ion-item>04</button>
+        <button (click)="goToEpisode(episodio.titulo, episodio.url)" color="secundaria" ion-item *ngFor="let episodio of listaEpisodios">{{ episodio.titulo }}</button>
       </ion-list>
     </ion-card-content>
   </ion-card>
