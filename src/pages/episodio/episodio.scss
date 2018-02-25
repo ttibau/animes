@@ -1,0 +1,80 @@
+$SIDEMENU_TOP: #34495e;
+$SIDEMENU_BOTTOM: #2c3e50;
+
+page-episodio {
+    .main-content {
+        background: -webkit-linear-gradient(left top, $SIDEMENU_TOP, $SIDEMENU_BOTTOM);
+        background: -o-linear-gradient(bottom right, $SIDEMENU_TOP, $SIDEMENU_BOTTOM);
+        background: -moz-linear-gradient(bottom right, $SIDEMENU_TOP, $SIDEMENU_BOTTOM);
+        background: linear-gradient(to bottom right, $SIDEMENU_TOP, $SIDEMENU_BOTTOM);
+    }
+
+    .main-card {
+        text-align: center;
+        color: #ffffff;
+        ion-card-header {
+            background-color: #16a085;
+            color: #ffffff;
+        }
+
+        ion-card-content {
+            background-color: #2c3e50;
+            padding: 10px;
+            text-align: left;
+            p {
+                color: #ffffff;
+                padding-top: 10px;
+                font-size: 1.1em;
+            } 
+        }
+    }
+
+    .btn-group {
+        text-align: center;
+
+        ion-col {
+            button {
+                text-align: center;
+            }
+        }
+    }
+
+    ion-card-content {
+        background-color: #2c3e50;
+        padding: 10px;
+        text-align: left;
+        p {
+            color: #ffffff;
+            padding-top: 10px;
+            font-size: 1.2em;
+        } 
+
+        .button-group {
+            text-align: center;
+        }
+
+        ion-list {
+            background-color: #2c3e50; 
+            margin-top: 4px;
+            margin: none;
+        }
+
+        ion-item {
+            background-color: #2c3e50;
+        }
+    }
+
+    ion-card {
+        background-color: #2c3e50;
+    }
+
+    .icone-margin {
+        margin-right: 5px;
+    }
+
+    .titulo-episodio {
+        font-size: 1.5em !important;
+        color: #ffffff;
+        text-align: center;
+    }
+}

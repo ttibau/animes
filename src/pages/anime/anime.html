@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-navbar class="navbar-dashboard">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Anime</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content class="main-content">
+  <div class="main-card">
+    <ion-card>
+      <ion-card-header>
+        NomeDoAnime
+      </ion-card-header>
+      <ion-card-content>
+        <p>Aqui vai uma descrição muito breve do anime</p>
+        <div class="button-group">
+            <button ion-button color="danger"><ion-icon name="heart"></ion-icon> Favorito</button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <!-- Lista de episódios -->
+<div class="main-card">
+  <ion-card>
+    <ion-card-header>
+      LISTA DE EPISÓDIOS
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <button (click)="goToEpisode()" color="secundaria" ion-item>01</button>
+        <button color="secundaria" ion-item>02</button>
+        <button color="secundaria" ion-item>03</button>
+        <button color="secundaria" ion-item>04</button>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</div>
+</ion-content>

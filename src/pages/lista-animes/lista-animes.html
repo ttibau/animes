@@ -1,0 +1,19 @@
+
+<ion-header>
+  <ion-navbar class="navbar-dashboard">
+   <button ion-button menuToggle>
+     <ion-icon name="menu"></ion-icon>
+   </button>
+    <ion-title>Lista de animes</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+
+<ion-content class="main-content">
+  <ion-list>
+    <button *ngFor="let key of animesArray" ion-item (click)="goToAnime(key)">
+      {{ key }}
+    </button>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-navbar class="navbar-dashboard">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Episódio</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="main-content">
+  <div class="main-card">
+    <ion-card>
+      <ion-card-header>
+        Informações úteis
+      </ion-card-header>
+      <ion-card-content>
+        <p><strong>Atenção: </strong> se houver um link quebrado, por favor, nos informe, consertaremos o mais rápido possível. </p>
+
+        <ion-grid>
+          <ion-row class="btn-group">
+            <ion-col col-4><button block ion-button color="cor1"><ion-icon name="arrow-back"></ion-icon></button></ion-col>
+            <ion-col col-4><button block ion-button color="primary"><ion-icon name="cloud-download"></ion-icon></button></ion-col>
+            <ion-col col-4><button block ion-button color="cor2"><ion-icon name="arrow-forward"></ion-icon></button></ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <div class="main-card">
+    <ion-card>
+      <ion-card-header>
+        Episódio
+      </ion-card-header>
+      <ion-card-content>
+        <p class="titulo-episodio">One Piece - 897</p>
+        <ion-grid>
+          <ion-row class="btn-group">
+            <ion-col col-6><button block ion-button color="cor1"><ion-icon name="play" class="icone-margin" (click)="assistirAnime()"></ion-icon> Assistir</button></ion-col>
+            <ion-col col-6><button block ion-button color="primary"><ion-icon name="star" class="icone-margin"></ion-icon> Favoritar</button></ion-col>
+          </ion-row>
+          <button ion-button block color="carrot"><ion-icon name="alert" class="icone-margin"></ion-icon> Episódio com link quebrado.</button>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
