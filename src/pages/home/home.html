@@ -1,14 +1,41 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
+<ion-header dark>
+  <ion-navbar class="navbar-dashboard">
+   <button ion-button menuToggle>
+     <ion-icon name="menu"></ion-icon>
+   </button>
+    <ion-title>Início</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+
+<ion-content class="main-content">
+
+  <div class="main-card">
+    <ion-card>
+      <ion-card-header>
+        Principal
+      </ion-card-header>
+      <ion-card-content>
+        <p>Abaixo a lista dos últimos episódios lançados no aplicativo: </p>
+        <p>Se houver alguma dúvida, clique em <strong><ion-icon name="help-buoy"></ion-icon> Suporte</strong>. Lá além de falar conosco, você tem acesso aos nossos grupos do Whatsapp. </p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+  
+    <div class="lancamentos-list">
+      <ion-list>
+        <ion-item>
+          <ion-thumbnail item-start>
+            <img src="http://www.iconarchive.com/download/i54293/crountch/one-piece-jolly-roger/Luffys-flag.ico">
+          </ion-thumbnail>
+          <h2>One Piece - EP 896</h2>
+        </ion-item>
+        <ion-item>
+          <ion-thumbnail item-start>
+            <img src="https://orig00.deviantart.net/ea77/f/2017/110/0/d/boruto__naruto_next_generations___anime_icon_by_rofiano-db6ikal.png">
+          </ion-thumbnail>
+          <h2>Boruto</h2>
+        </ion-item>
+      </ion-list>
+    </div>
 </ion-content>

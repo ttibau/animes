@@ -1,3 +1,55 @@
-page-home {
+$SIDEMENU_TOP: #34495e;
+$SIDEMENU_BOTTOM: #2c3e50;
 
+page-home {
+    .main-content {
+        background: -webkit-linear-gradient(left top, $SIDEMENU_TOP, $SIDEMENU_BOTTOM);
+        background: -o-linear-gradient(bottom right, $SIDEMENU_TOP, $SIDEMENU_BOTTOM);
+        background: -moz-linear-gradient(bottom right, $SIDEMENU_TOP, $SIDEMENU_BOTTOM);
+        background: linear-gradient(to bottom right, $SIDEMENU_TOP, $SIDEMENU_BOTTOM);
+    }
+
+    .main-card {
+        text-align: center;
+        color: #ffffff;
+        ion-card-header {
+            background-color: #16a085;
+            color: #ffffff;
+        }
+
+        ion-card-content {
+            background-color: #2c3e50;
+            padding: 10px;
+            text-align: left;
+            p {
+                color: #ffffff;
+                padding-top: 10px;
+                font-size: 1.5em;
+            } 
+        }
+    }
+
+    .lancamentos-list {
+
+        background-color: #2c3e50;
+
+        ion-list {
+            padding-top: 10px;
+            background-color: #2c3e50;
+        }
+
+        ion-item {
+            background-color: #2c3e50;
+            color: #ffffff;
+        }
+
+        .list-ios > .item-block:last-child, .list-ios > .item-wrapper:last-child .item-block {
+            border-bottom: #34495e;
+        }
+
+        .list-ios > .item-block:first-child {
+            border-top: #34495e;
+        }
+
+    }
 }

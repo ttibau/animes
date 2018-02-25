@@ -15,6 +15,7 @@ $app-direction: ltr;
 @import "ionic.globals";
 
 
+$toolbar-background: #34495e;
 // Shared Variables
 // --------------------------------------------------
 // To customize the look and feel of this app, you can override
@@ -38,7 +39,13 @@ $colors: (
   secondary:  #32db64,
   danger:     #f53d3d,
   light:      #f4f4f4,
-  dark:       #222
+  dark:       #222, 
+  PRINCIPAL: #34495e,
+  secundaria: #2c3e50,
+  clouds: #ecf0f1,
+  cor1: #16a085,
+  cor2: #1abc9c,
+  carrot: #e67e22
 );
 
 
