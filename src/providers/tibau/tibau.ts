@@ -77,9 +77,7 @@ export class TibauProvider {
     loading.present();
 
     let promise = new Promise((resolve, reject) => {
-      this.db.object(episode.toString()).valueChanges().subscribe(data => {
-        console.log(episode);
-        console.log(data);
+      this.db.object(episode).valueChanges().subscribe(data => {
         loading.dismiss();
         resolve(data);
       }, error => {

@@ -13,7 +13,7 @@ export class ListaAnimesPage {
   private animesArray;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private tP: TibauProvider) {
-    let animes = tP.getAnimesKeys().then(data => {
+    tP.getAnimesKeys().then(data => {
       this.animesArray = data;
     })
   }
