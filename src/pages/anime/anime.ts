@@ -14,6 +14,7 @@ export class AnimePage {
   public nome;
   public sinopse;
   public genero;
+  order: string = 'titulo';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private tibauProvider: TibauProvider) {
     this.tibauProvider.goToAnime(this.navParams.get('letraSelecionada'), this.navParams.get('animeSelecionado')).then(data => { 

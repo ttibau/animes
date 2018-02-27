@@ -14,6 +14,7 @@ import { AnimePage } from '../pages/anime/anime';
 import { ListaAnimesFiltradoPage } from '../pages/lista-animes-filtrado/lista-animes-filtrado';
 import { EpisodioPage } from '../pages/episodio/episodio';
 import { TibauProvider } from '../providers/tibau/tibau';
+import { OrderModule } from 'ngx-order-pipe';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { TibauProvider } from '../providers/tibau/tibau';
       messagingSenderId: "968314697865"
     }),
     AngularFireDatabaseModule,
-    HttpClientModule
+    HttpClientModule,
+    OrderModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

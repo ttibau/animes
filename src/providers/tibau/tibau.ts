@@ -59,6 +59,7 @@ export class TibauProvider {
 
     let promise = new Promise((resolve, reject) => {
       this.db.object('animes/' + letra + '/' + anime).valueChanges().subscribe(data => {
+        console.log(data);
         loading.dismiss();
         resolve(data);
       }, err => {

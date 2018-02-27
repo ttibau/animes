@@ -32,7 +32,7 @@
     </ion-card-header>
     <ion-card-content>
       <ion-list>
-        <button (click)="goToEpisode(episodio.titulo, episodio.url, episodio.prev, episodio.next)" color="secundaria" ion-item *ngFor="let episodio of listaEpisodios">{{ episodio.titulo }}</button>
+        <button (click)="goToEpisode(episodio.titulo, episodio.url, episodio.prev, episodio.next)" color="secundaria" ion-item *ngFor="let episodio of listaEpisodios | orderBy: order">{{ episodio.titulo }}</button>
       </ion-list>
     </ion-card-content>
   </ion-card>
