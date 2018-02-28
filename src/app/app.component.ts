@@ -14,8 +14,19 @@ export class MyApp {
   rootPage:any = HomePage;
   public pages: Array<{ titulo: string, component:any,  icon: string}>;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {    
     platform.ready().then(() => {
+
+     if(platform.is('cordova')){
+      var notificationOpenedCallback = function(jsonData) {
+        console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+      };
+  
+      window["plugins"].OneSignal
+        .startInit("2ac55b01-f584-40e0-abca-8628a78ecb70", "968314697865")
+        .handleNotificationOpened(notificationOpenedCallback)
+        .endInit();
+     }
      
       statusBar.styleDefault();
       splashScreen.hide();

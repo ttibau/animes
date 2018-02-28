@@ -24,6 +24,20 @@
     </ion-card>
   </div>
 
+    <!-- Lista de ovas e filmes -->
+    <div class="main-card" *ngIf="temOvas">
+      <ion-card>
+        <ion-card-header>
+          LISTA DE OVA's & Filmes
+        </ion-card-header>
+        <ion-card-content>
+          <ion-list>
+            <button (click)="goToEpisode(ova.titulo, ova.url, ova.prev, ova.next)"  *ngFor="let ova of listaOvas | orderBy: order"  color="secundaria" ion-item>{{ova.titulo}}</button>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
   <!-- Lista de episódios -->
 <div class="main-card">
   <ion-card>
