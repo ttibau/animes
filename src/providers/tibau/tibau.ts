@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
-import { LoadingController } from 'ionic-angular';
+import { LoadingController, Platform } from 'ionic-angular';
+import { AdMobFree, AdMobFreeBannerConfig, AdMobFreeRewardVideoConfig } from '@ionic-native/admob-free';
 
 @Injectable()
 export class TibauProvider {
 
-  constructor(public http: HttpClient, private db: AngularFireDatabase, private loadingCtrl: LoadingController) {
+  constructor(public platform: Platform, public http: HttpClient, private db: AngularFireDatabase, private loadingCtrl: LoadingController, private admobFree: AdMobFree) {
     
   }
 
@@ -87,6 +88,30 @@ export class TibauProvider {
       })
     })
     return promise;
+  }
+
+  // ============ configurações admob ==================
+
+  mostrarBanner(){
+    if(this.platform.is('cordova')){
+      const bannerConfig: AdMobFreeBannerConfig = {
+        isTesting: false,
+        autoShow: true,
+        id: 'ca-app-pub-5774339234804708/9763880359'
+       };
+      let banner =  this.admobFree.banner.config(bannerConfig);
+      return banner;
+    }
+  }
+
+  mostrarVideo(){
+    const videoRewardsConfig: AdMobFreeRewardVideoConfig = {
+      id: 'ca-app-pub-5774339234804708/9927531884',
+      isTesting: false,
+      autoShow: true
+    }
+    this.admobFree.rewardVideo.config(videoRewardsConfig);
+    this.admobFree.rewardVideo.prepare();
   }
 
 }

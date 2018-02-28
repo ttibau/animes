@@ -15,6 +15,7 @@ import { ListaAnimesFiltradoPage } from '../pages/lista-animes-filtrado/lista-an
 import { EpisodioPage } from '../pages/episodio/episodio';
 import { TibauProvider } from '../providers/tibau/tibau';
 import { OrderModule } from 'ngx-order-pipe';
+import { AdMobFree } from '@ionic-native/admob-free';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { OrderModule } from 'ngx-order-pipe';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    TibauProvider
+    TibauProvider,
+    AdMobFree
   ]
 })
 export class AppModule {}

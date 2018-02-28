@@ -4,6 +4,9 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ListaAnimesPage } from '../pages/lista-animes/lista-animes';
 import { HomePage } from '../pages/home/home';
+import { TibauProvider } from '../providers/tibau/tibau';
+import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free';
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -14,10 +17,22 @@ export class MyApp {
   rootPage:any = HomePage;
   public pages: Array<{ titulo: string, component:any,  icon: string}>;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {    
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public tP: TibauProvider, private admobFree: AdMobFree) {    
     platform.ready().then(() => {
 
      if(platform.is('cordova')){
+      
+      // ATIVANDO BANNER ADMOB
+      const bannerConfig: AdMobFreeBannerConfig = {
+        isTesting: false,
+        autoShow: true,
+        id: 'ca-app-pub-5774339234804708/9763880359'
+       };
+       this.admobFree.banner.config(bannerConfig);
+       
+       this.admobFree.banner.prepare();
+
+      // CONFIGURAÇÕES ONE SIGNAL
       var notificationOpenedCallback = function(jsonData) {
         console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
       };
