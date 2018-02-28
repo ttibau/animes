@@ -12,17 +12,14 @@ export class EpisodioPage {
   public episodioUrl;
   public proximoEpisodio;
   public episodioAnterior;
-  public btnPrev = true;
-
+  
   constructor(public navCtrl: NavController, public navParams: NavParams, private tP: TibauProvider) {
     this.episodioTitulo = this.navParams.get('episodioTitulo');
     this.episodioUrl =  this.navParams.get('episodioUrl');
     this.proximoEpisodio = this.navParams.get('episodioSeguinte');
     this.episodioAnterior = this.navParams.get('episodioAnterior');
     
-    if(this.episodioAnterior === ''){
-      this.btnPrev = false;
-    }
+    
   }
 
   changeEpisode(ep){
@@ -31,13 +28,6 @@ export class EpisodioPage {
       this.episodioAnterior = data["prev"];
       this.episodioTitulo = data["titulo"];
       this.episodioUrl = data["url"];
-
-      if(data["prev"] === undefined || data["prev"] === null || data["prev"] === ''){
-        // não tem episódio pra frente, desabilitar botão de próximo
-        this.btnPrev = false;
-      }
-
-      console.log(this.proximoEpisodio);
     }, error => {
       console.log(error);
     })
