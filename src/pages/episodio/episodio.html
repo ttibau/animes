@@ -18,9 +18,9 @@
         <p><strong>Gire o celular (ative) e coloque clique em full screen para assistir um vídeo com uma qualidade melhor.</strong></p>
         <ion-grid>
           <ion-row class="btn-group">
-            <ion-col col-4><button block ion-button color="secondary" *ngIf="btnPrev" (click)="changeEpisode(episodioAnterior)"><ion-icon name="arrow-back"></ion-icon></button></ion-col>
+            <ion-col col-4><button block ion-button color="secondary" [disabled]="!btnPrev" (click)="changeEpisode(episodioAnterior)"><ion-icon name="arrow-back"></ion-icon></button></ion-col>
             <ion-col col-4><button block ion-button color="primary"><ion-icon name="cloud-download"></ion-icon></button></ion-col>
-            <ion-col col-4><button block ion-button color="secondary" *ngIf="btnPrev" (click)="changeEpisode(proximoEpisodio)"><ion-icon name="arrow-forward"></ion-icon></button></ion-col>
+            <ion-col col-4><button block ion-button color="secondary" (click)="changeEpisode(proximoEpisodio)"><ion-icon name="arrow-forward"></ion-icon></button></ion-col>
           </ion-row>
           <ion-row>
             <ion-col col-6>

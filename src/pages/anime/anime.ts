@@ -15,14 +15,13 @@ export class AnimePage {
   public sinopse;
   public genero;
   public temOvas = false;
-  order: string = 'titulo';
+  public order: string = 'titulo';
   public listaOvas;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private tibauProvider: TibauProvider) {
     this.tibauProvider.goToAnime(this.navParams.get('letraSelecionada'), this.navParams.get('animeSelecionado')).then(data => { 
       this.listaEpisodios = (<any>Object).values(data["episodios"]);
       if(data["ovas"] === undefined || data["ovas"] === null){
-        console.log(this.listaOvas);
         this.temOvas = false;
       } else {
         this.listaOvas = (<any>Object).values(data["ovas"]);
