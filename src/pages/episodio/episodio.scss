@@ -43,6 +43,12 @@ page-episodio {
         background-color: #2c3e50;
         padding: 10px;
         text-align: left;
+
+        .aviso {
+            color: #d35400 !important;
+            text-align: center;
+        }
+
         p {
             color: #ffffff;
             padding-top: 10px;
@@ -83,8 +89,4 @@ page-episodio {
         height: 100%;
     }
 
-    .aviso {
-        color: #c0392b;
-        text-align: center;
-    }
 }

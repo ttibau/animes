@@ -49,7 +49,6 @@ export class MyApp {
       this.pages = [
         { titulo: 'Lançamentos', component: HomePage,   icon: 'add'},
         { titulo: 'Animes', component: ListaAnimesPage,  icon: 'list'},
-        //{ titulo: 'Pesquisar', icon: 'search'},
         //{ titulo: 'Categorias', icon: 'list-box'},
         //{ titulo: 'Populares',  icon: 'star'},
         //{ titulo: 'Assistidos',  icon: 'checkmark'},
