@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { LoadingController, Platform } from 'ionic-angular';
-import { AdMobFree, AdMobFreeBannerConfig, AdMobFreeRewardVideoConfig } from '@ionic-native/admob-free';
+import { AdMobFree, AdMobFreeBannerConfig, AdMobFreeRewardVideoConfig, AdMobFreeInterstitialConfig } from '@ionic-native/admob-free';
 
 @Injectable()
 export class TibauProvider {
@@ -112,6 +112,14 @@ export class TibauProvider {
     }
     this.admobFree.rewardVideo.config(videoRewardsConfig);
     this.admobFree.rewardVideo.prepare();
+  }
+
+  mostrarInterstitial(){
+    const admobIntestitialConfig: AdMobFreeInterstitialConfig = {
+      id: 'ca-app-pub-5774339234804708/5521792137',
+      isTesting: false, 
+      autoShow: true
+    }
   }
 
 }
