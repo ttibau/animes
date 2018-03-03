@@ -55,6 +55,7 @@ export class AnimePage {
   }
 
  goToEpisode(titulo, url, prev, next) {
+   this.tibauProvider.mostrarInterstitial();
    this.navCtrl.push(EpisodioPage, {
      episodioUrl: url, 
      episodioTitulo: titulo,

@@ -99,6 +99,7 @@ export class TibauProvider {
     this.db.object('users/' + localStorage.getItem('uuid')).update({
       countAssistidos: 1
     });
+    localStorage.setItem('episodiosAssistidos', '1');
   }
 
   // Vai inserir um novo episódio no usuário
@@ -112,7 +113,7 @@ export class TibauProvider {
   // Vai verificar se a quantidade de episódios assistidos pelo usuário é igual a 3
   verificaCountEpisodios(){
     
-    if(parseInt(localStorage.getItem('episodiosAssistidos')) === 3){
+    if(parseInt(localStorage.getItem('episodiosAssistidos')) >= 3){
       document.addEventListener('admob.rewardvideo.events.REWARD', () => {
         this.zerarEpisodiosAssistidos();
         // zerar episodiod assistidos no bd
