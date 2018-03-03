@@ -71,6 +71,29 @@ export class TibauProvider {
     return promise;
   }
 
+  //Verifica se o device id já tem no banco, se não tiver, cria um novo
+  checkDeviceID(uuid){
+    let loading = this.loadingCtrl.create({
+      content: 'Carregando...'
+    });
+    loading.present();
+
+    this.db.object('users/' + uuid).valueChanges().subscribe(data => {
+      console.log(data);
+      if(data === null){
+        // Fazer um novo cadastro
+        loading.dismiss();
+        this.db.object('users/' + uuid).update({
+          countAssistidos: 0
+        })
+      } else {
+        loading.dismiss();
+        // Jogar no localStorage o valor atualo do countAssistidos
+        localStorage.setItem('episodiosAssistidos', data["countAssistidos"]);
+      }
+    })
+  }
+
   // Vai pegar os dados do episódio à frente ou atrás
   handleEpisode(episode){
     let loading = this.loadingCtrl.create({
@@ -99,8 +122,8 @@ export class TibauProvider {
         autoShow: true,
         id: 'ca-app-pub-5774339234804708/9763880359'
        };
-      let banner =  this.admobFree.banner.config(bannerConfig);
-      return banner;
+      this.admobFree.banner.config(bannerConfig);
+      this.admobFree.banner.prepare();
     }
   }
 
@@ -120,6 +143,8 @@ export class TibauProvider {
       isTesting: false, 
       autoShow: true
     }
+    this.admobFree.interstitial.config(admobIntestitialConfig);
+    this.admobFree.interstitial.prepare();
   }
 
 }

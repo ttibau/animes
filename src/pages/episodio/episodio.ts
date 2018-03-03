@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform, AlertController } from 'ionic-angular';
 import { TibauProvider } from '../../providers/tibau/tibau';
-import { AdMobFree } from '@ionic-native/admob-free';
+
 @IonicPage()
 @Component({
   selector: 'page-episodio',
@@ -14,13 +14,12 @@ export class EpisodioPage {
   public episodioAnterior;
   public countEpisodiosAssistidos;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private tP: TibauProvider, public platform: Platform, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public tP: TibauProvider, public platform: Platform, public alertCtrl: AlertController) {
     this.episodioTitulo = this.navParams.get('episodioTitulo');
     this.episodioUrl =  this.navParams.get('episodioUrl');
     this.proximoEpisodio = this.navParams.get('episodioSeguinte');
     this.episodioAnterior = this.navParams.get('episodioAnterior');
 
-    localStorage.setItem('episodiosAssistidos', '1');
     this.countEpisodiosAssistidos = parseInt(localStorage.getItem('episodiosAssistidos'));
   }
 

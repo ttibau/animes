@@ -12,7 +12,7 @@ import { TibauProvider } from '../../providers/tibau/tibau';
 export class ListaAnimesPage {
   private animesArray;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private tP: TibauProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public tP: TibauProvider) {
     tP.getAnimesKeys().then(data => {
       this.animesArray = data;
     })
