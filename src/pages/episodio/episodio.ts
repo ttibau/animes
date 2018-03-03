@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import { TibauProvider } from '../../providers/tibau/tibau';
 
 @IonicPage()
@@ -14,7 +14,7 @@ export class EpisodioPage {
   public episodioAnterior;
   public countEpisodiosAssistidos;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public tP: TibauProvider, public platform: Platform, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public tP: TibauProvider, public platform: Platform) {
     this.episodioTitulo = this.navParams.get('episodioTitulo');
     this.episodioUrl =  this.navParams.get('episodioUrl');
     this.proximoEpisodio = this.navParams.get('episodioSeguinte');
@@ -24,33 +24,14 @@ export class EpisodioPage {
   }
 
   changeEpisode(ep){
+    // Vai verificar se a quantidade de episódios assistidos é maior que 3
+    this.tP.verificaCountEpisodios();
 
-    if(this.countEpisodiosAssistidos === 3){
-      document.addEventListener('admob.rewardvideo.events.REWARD', () => {
-        localStorage.setItem('episodiosAssistidos', '0');  
-      });
-
-      if(this.platform.is('cordova')){
-        let alert = this.alertCtrl.create({
-          title: 'Atenção',
-          subTitle: 'Exibiremos um vídeo de anúncio pois você assistiu 3 episódios, tenha bom senso em nos ajudar a manter o projeto. O contador irá ZERAR após você assistir o vídeo inteiro',
-          buttons: [
-            {
-              text: 'OK',
-              role: 'ok',
-              handler: () => {
-                this.tP.mostrarVideo();
-              }
-            }]
-        });
-        alert.present();
-      }
-    }
-
-    this.countEpisodiosAssistidos = parseInt(localStorage.getItem('episodiosAssistidos'));
     this.countEpisodiosAssistidos++;
-    localStorage.setItem('episodiosAssistidos', this.countEpisodiosAssistidos);
-
+    // QUANDO O USUÁRIO CLICAR NO PRÓXIMO OU PREV, VAI MANDAR PRO BD A QUANTIDADE DE EPISÓDIOS  ASSISTIDOS + 1
+    // APÓS ADICIONAR UM EPISÓDIOASSISTIDO NO BANCO, JOGA NO LOCALSTORAGE O NOVO VALOR
+    this.tP.adicionarEpisodioAssistido(this.countEpisodiosAssistidos);
+    
     this.tP.handleEpisode(ep).then(data => {
       this.proximoEpisodio = data["next"];
       this.episodioAnterior = data["prev"];

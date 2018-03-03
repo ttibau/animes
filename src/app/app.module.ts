@@ -16,7 +16,7 @@ import { EpisodioPage } from '../pages/episodio/episodio';
 import { TibauProvider } from '../providers/tibau/tibau';
 import { OrderModule } from 'ngx-order-pipe';
 import { AdMobFree } from '@ionic-native/admob-free';
-
+import { UniqueDeviceID } from '@ionic-native/unique-device-id';
 
 @NgModule({
   declarations: [
@@ -56,7 +56,8 @@ import { AdMobFree } from '@ionic-native/admob-free';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     TibauProvider,
-    AdMobFree
+    AdMobFree,
+    UniqueDeviceID
   ]
 })
 export class AppModule {}

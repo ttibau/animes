@@ -1,13 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
-import { LoadingController, Platform } from 'ionic-angular';
+import { LoadingController, Platform, AlertController } from 'ionic-angular';
 import { AdMobFree, AdMobFreeBannerConfig, AdMobFreeRewardVideoConfig, AdMobFreeInterstitialConfig } from '@ionic-native/admob-free';
 
 @Injectable()
 export class TibauProvider {
 
-  constructor(public platform: Platform, public http: HttpClient, private db: AngularFireDatabase, private loadingCtrl: LoadingController, private admobFree: AdMobFree) {
+  constructor( public alertCtrl: AlertController, public platform: Platform, public http: HttpClient, private db: AngularFireDatabase, private loadingCtrl: LoadingController, private admobFree: AdMobFree) {
     
   }
 
@@ -92,6 +92,48 @@ export class TibauProvider {
         localStorage.setItem('episodiosAssistidos', data["countAssistidos"]);
       }
     })
+  }
+
+  // Vai zerar a quantidade de episódios assistidos
+  zerarEpisodiosAssistidos(){
+    this.db.object('users/' + localStorage.getItem('uuid')).update({
+      countAssistidos: 1
+    });
+  }
+
+  // Vai inserir um novo episódio no usuário
+  adicionarEpisodioAssistido(count){
+    this.db.object('users/' + localStorage.getItem('uuid')).update({
+      countAssistidos: count
+    });
+    localStorage.setItem('episodiosAssistidos', count);
+  }
+
+  // Vai verificar se a quantidade de episódios assistidos pelo usuário é igual a 3
+  verificaCountEpisodios(){
+    
+    if(parseInt(localStorage.getItem('episodiosAssistidos')) === 3){
+      document.addEventListener('admob.rewardvideo.events.REWARD', () => {
+        this.zerarEpisodiosAssistidos();
+        // zerar episodiod assistidos no bd
+      });
+
+      if(this.platform.is('cordova')){
+        let alert = this.alertCtrl.create({
+          title: 'Atenção',
+          subTitle: 'Exibiremos um vídeo de anúncio pois você assistiu 3 episódios, tenha bom senso em nos ajudar a manter o projeto. O contador irá ZERAR após você assistir o vídeo inteiro',
+          buttons: [
+            {
+              text: 'OK',
+              role: 'ok',
+              handler: () => {
+                this.mostrarVideo();
+              }
+            }]
+        });
+        alert.present();
+      }
+    }
   }
 
   // Vai pegar os dados do episódio à frente ou atrás
