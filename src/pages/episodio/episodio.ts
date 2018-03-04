@@ -13,14 +13,21 @@ export class EpisodioPage {
   public proximoEpisodio;
   public episodioAnterior;
   public countEpisodiosAssistidos;
+  public animeNome;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public tP: TibauProvider, public platform: Platform) {
     this.episodioTitulo = this.navParams.get('episodioTitulo');
     this.episodioUrl =  this.navParams.get('episodioUrl');
     this.proximoEpisodio = this.navParams.get('episodioSeguinte');
     this.episodioAnterior = this.navParams.get('episodioAnterior');
+    this.animeNome = this.navParams.get('animeNome');
 
     this.countEpisodiosAssistidos = parseInt(localStorage.getItem('episodiosAssistidos'));
+  }
+
+  // método que vai marcar esse episódio como visto e adicionar informações dele no banco no nó do deviceid atual
+  marcarVisto(){
+    this.tP.adicionarVisto(this.animeNome, this.episodioTitulo);
   }
 
   changeEpisode(ep){

@@ -6,7 +6,10 @@ import { ListaAnimesPage } from '../pages/lista-animes/lista-animes';
 import { HomePage } from '../pages/home/home';
 import { TibauProvider } from '../providers/tibau/tibau';
 import { UniqueDeviceID } from '@ionic-native/unique-device-id';
-
+import { SuportePage } from '../pages/suporte/suporte';
+import { AssistidosPage } from '../pages/assistidos/assistidos';
+import { FaqPage } from '../pages/faq/faq';
+import { FavoritosPage } from '../pages/favoritos/favoritos';
 
 @Component({
   templateUrl: 'app.html'
@@ -50,16 +53,16 @@ export class MyApp {
       this.pages = [
         { titulo: 'Lançamentos', component: HomePage,   icon: 'add'},
         { titulo: 'Animes', component: ListaAnimesPage,  icon: 'list'},
-        //{ titulo: 'Categorias', icon: 'list-box'},
-        //{ titulo: 'Populares',  icon: 'star'},
-        //{ titulo: 'Assistidos',  icon: 'checkmark'},
-        //{ titulo: 'Dúvidas & Suporte',  icon: 'help-buoy'}
+        { titulo: 'Favoritos', component: FavoritosPage,  icon: 'star'},
+        { titulo: 'FAQ', component: FaqPage, icon: 'list-box'},
+        { titulo: 'Assistidos', component: AssistidosPage, icon: 'checkmark'},
+        { titulo: 'Dúvidas & Suporte', component: SuportePage,  icon: 'help-buoy'}
       ];
     });
   }
 
   goToPage(page){
-    this.nav.setRoot(page)
+    this.nav.push(page)
   }
 }
 

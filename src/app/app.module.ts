@@ -13,10 +13,14 @@ import { ListaAnimesPage } from '../pages/lista-animes/lista-animes';
 import { AnimePage } from '../pages/anime/anime';
 import { ListaAnimesFiltradoPage } from '../pages/lista-animes-filtrado/lista-animes-filtrado';
 import { EpisodioPage } from '../pages/episodio/episodio';
+import { SuportePage } from '../pages/suporte/suporte';
 import { TibauProvider } from '../providers/tibau/tibau';
 import { OrderModule } from 'ngx-order-pipe';
 import { AdMobFree } from '@ionic-native/admob-free';
 import { UniqueDeviceID } from '@ionic-native/unique-device-id';
+import { AssistidosPage } from '../pages/assistidos/assistidos';
+import { FaqPage } from '../pages/faq/faq';
+import { FavoritosPage } from '../pages/favoritos/favoritos';
 
 @NgModule({
   declarations: [
@@ -25,7 +29,11 @@ import { UniqueDeviceID } from '@ionic-native/unique-device-id';
     ListaAnimesPage,
     AnimePage,
     ListaAnimesFiltradoPage,
-    EpisodioPage
+    EpisodioPage,
+    SuportePage,
+    AssistidosPage,
+    FaqPage,
+    FavoritosPage
   ],
   imports: [
     BrowserModule,
@@ -49,7 +57,11 @@ import { UniqueDeviceID } from '@ionic-native/unique-device-id';
     ListaAnimesPage,
     AnimePage,
     ListaAnimesFiltradoPage,
-    EpisodioPage
+    EpisodioPage,
+    SuportePage,
+    AssistidosPage,
+    FaqPage,
+    FavoritosPage
   ],
   providers: [
     StatusBar,

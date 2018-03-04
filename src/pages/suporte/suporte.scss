@@ -1,0 +1,17 @@
+$SIDEMENU_TOP: #34495e;
+$SIDEMENU_BOTTOM: #2c3e50;
+
+page-suporte {
+    .main-content {
+        background: -webkit-linear-gradient(left top, $SIDEMENU_TOP, $SIDEMENU_BOTTOM);
+        background: -o-linear-gradient(bottom right, $SIDEMENU_TOP, $SIDEMENU_BOTTOM);
+        background: -moz-linear-gradient(bottom right, $SIDEMENU_TOP, $SIDEMENU_BOTTOM);
+        background: linear-gradient(to bottom right, $SIDEMENU_TOP, $SIDEMENU_BOTTOM);
+    }
+
+    .main-card {
+        
+    }
+
+    
+}

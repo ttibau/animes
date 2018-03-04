@@ -4,11 +4,12 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { LoadingController, Platform, AlertController } from 'ionic-angular';
 import { AdMobFree, AdMobFreeBannerConfig, AdMobFreeRewardVideoConfig, AdMobFreeInterstitialConfig } from '@ionic-native/admob-free';
 
+
 @Injectable()
 export class TibauProvider {
 
-  constructor( public alertCtrl: AlertController, public platform: Platform, public http: HttpClient, private db: AngularFireDatabase, private loadingCtrl: LoadingController, private admobFree: AdMobFree) {
-    
+  constructor(public alertCtrl: AlertController, public platform: Platform, public http: HttpClient, private db: AngularFireDatabase, private loadingCtrl: LoadingController, private admobFree: AdMobFree) {
+
   }
 
   // Retorna um resolve contendo as letras iniciais dos animes
@@ -155,6 +156,26 @@ export class TibauProvider {
     })
     return promise;
   }
+
+
+  // Adicionar episódio como visto no bd
+  adicionarVisto(animeNome, episodioNumero){
+
+
+    this.db.object('users/' + localStorage.getItem('uuid') + '/vistos').update({
+      nome: animeNome + ' - ' + episodioNumero
+    });
+
+    console.log('users/' + localStorage.getItem('uuid') + '/vistos')
+  }
+
+
+
+
+
+
+
+
 
   // ============ configurações admob ==================
 
