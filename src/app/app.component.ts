@@ -56,7 +56,7 @@ export class MyApp {
         { titulo: 'Favoritos', component: FavoritosPage,  icon: 'star'},
         { titulo: 'FAQ', component: FaqPage, icon: 'list-box'},
         { titulo: 'Assistidos', component: AssistidosPage, icon: 'checkmark'},
-        { titulo: 'Dúvidas & Suporte', component: SuportePage,  icon: 'help-buoy'}
+        { titulo: 'Suporte', component: SuportePage,  icon: 'help-buoy'}
       ];
     });
   }

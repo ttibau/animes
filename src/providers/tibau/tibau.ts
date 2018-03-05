@@ -3,12 +3,12 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { LoadingController, Platform, AlertController } from 'ionic-angular';
 import { AdMobFree, AdMobFreeBannerConfig, AdMobFreeRewardVideoConfig, AdMobFreeInterstitialConfig } from '@ionic-native/admob-free';
-
+import { ToastController } from 'ionic-angular';
 
 @Injectable()
 export class TibauProvider {
 
-  constructor(public alertCtrl: AlertController, public platform: Platform, public http: HttpClient, private db: AngularFireDatabase, private loadingCtrl: LoadingController, private admobFree: AdMobFree) {
+  constructor(public toastCtrl: ToastController, public alertCtrl: AlertController, public platform: Platform, public http: HttpClient, private db: AngularFireDatabase, private loadingCtrl: LoadingController, private admobFree: AdMobFree) {
 
   }
 
@@ -160,13 +160,21 @@ export class TibauProvider {
 
   // Adicionar episódio como visto no bd
   adicionarVisto(animeNome, episodioNumero){
-
-
-    this.db.object('users/' + localStorage.getItem('uuid') + '/vistos').update({
-      nome: animeNome + ' - ' + episodioNumero
-    });
-
-    console.log('users/' + localStorage.getItem('uuid') + '/vistos')
+    if(this.platform.is('cordova')){
+      let alert = this.alertCtrl.create({
+        title: 'Atenção',
+        subTitle: 'A adição de animes visto estará pronto na próxima versão do app que sairá nas próximas versões, tenha paciência.',
+        buttons: [
+          {
+            text: 'OK',
+            role: 'ok',
+            handler: () => {
+              this.mostrarInterstitial();
+            }
+          }]
+      });
+      alert.present();
+    }
   }
 
 
@@ -191,6 +199,10 @@ export class TibauProvider {
     }
   }
 
+  esconderBanner(){
+    this.admobFree.banner.hide();
+  }
+
   mostrarVideo(){
     const videoRewardsConfig: AdMobFreeRewardVideoConfig = {
       id: 'ca-app-pub-5774339234804708/9927531884',
@@ -202,6 +214,12 @@ export class TibauProvider {
   }
 
   mostrarInterstitial(){
+    let toast = this.toastCtrl.create({
+      message: 'Abrindo um anúncio...',
+      duration: 3000,
+      position: 'middle'
+    });
+    toast.present();
     const admobIntestitialConfig: AdMobFreeInterstitialConfig = {
       id: 'ca-app-pub-5774339234804708/5521792137',
       isTesting: false, 

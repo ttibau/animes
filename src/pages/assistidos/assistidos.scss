@@ -1,3 +1,24 @@
-page-assistidos {
+$SIDEMENU_TOP: #34495e;
+$SIDEMENU_BOTTOM: #2c3e50;
 
+page-assistidos {
+    .main-content {
+        background: -webkit-linear-gradient(left top, $SIDEMENU_TOP, $SIDEMENU_BOTTOM);
+        background: -o-linear-gradient(bottom right, $SIDEMENU_TOP, $SIDEMENU_BOTTOM);
+        background: -moz-linear-gradient(bottom right, $SIDEMENU_TOP, $SIDEMENU_BOTTOM);
+        background: linear-gradient(to bottom right, $SIDEMENU_TOP, $SIDEMENU_BOTTOM);
+        text-align: center;
+    }
+
+    .aviso {
+        text-align: center;
+        font-size: 1.2em;
+        color: #ff7675;
+    }
+
+    .aviso2 {
+        text-align: center;
+        font: 1.2em;
+        color: #a29bfe;
+    }
 }

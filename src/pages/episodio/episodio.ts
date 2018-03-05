@@ -49,4 +49,7 @@ export class EpisodioPage {
     })
   }
 
+  esconderBanner(){
+    this.tP.esconderBanner();
+  }
 }
