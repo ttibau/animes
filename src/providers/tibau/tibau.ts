@@ -115,15 +115,19 @@ export class TibauProvider {
   verificaCountEpisodios(){
     
     if(parseInt(localStorage.getItem('episodiosAssistidos')) >= 3){
+      // VAI OUVIR E VER SE O USUÁRIO VIU O VÍDEO INTEIRO.
       document.addEventListener('admob.rewardvideo.events.REWARD', () => {
         this.zerarEpisodiosAssistidos();
+        localStorage.setItem('videoLiberado', '01');
         // zerar episodiod assistidos no bd
       });
 
       if(this.platform.is('cordova')){
+        // vou setar o valor do localstorage pra false
+        localStorage.setItem('videoLiberado', '00');
         let alert = this.alertCtrl.create({
           title: 'Atenção',
-          subTitle: 'Exibiremos um vídeo de anúncio pois você assistiu 3 episódios, tenha bom senso em nos ajudar a manter o projeto. O contador irá ZERAR após você assistir o vídeo inteiro',
+          subTitle: 'Exibiremos um vídeo de anúncio pois você assistiu 3 episódios, tenha bom senso em nos ajudar a manter o projeto. O contador irá ZERAR após você assistir o vídeo inteiro e o vídeo será liberado.',
           buttons: [
             {
               text: 'OK',
@@ -201,6 +205,10 @@ export class TibauProvider {
 
   esconderBanner(){
     this.admobFree.banner.hide();
+  }
+
+  mostrarBannerEscondido() {
+    this.admobFree.banner.show();
   }
 
   mostrarVideo(){

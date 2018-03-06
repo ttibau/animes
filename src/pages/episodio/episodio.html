@@ -43,7 +43,7 @@
       </ion-card-header>
       <ion-card-content overflow-scroll="true">
         <p class="titulo-episodio">{{ episodioTitulo }}</p>
-        <video controls="controls" preload="metadata" autoplay="autoplay" [src]="episodioUrl" webkit-playsinline="webkit-playsinline" class="videoPlayer"></video>
+        <video *ngIf="videoLiberado === 01" (click)="esconderBanner()" controls="controls" preload="metadata" autoplay="autoplay" [src]="episodioUrl" webkit-playsinline="webkit-playsinline" class="videoPlayer"></video>
       </ion-card-content>
     </ion-card>
   </div>

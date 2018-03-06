@@ -14,6 +14,7 @@ export class EpisodioPage {
   public episodioAnterior;
   public countEpisodiosAssistidos;
   public animeNome;
+  public videoLiberado;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public tP: TibauProvider, public platform: Platform) {
     this.episodioTitulo = this.navParams.get('episodioTitulo');
@@ -22,6 +23,8 @@ export class EpisodioPage {
     this.episodioAnterior = this.navParams.get('episodioAnterior');
     this.animeNome = this.navParams.get('animeNome');
 
+    localStorage.setItem('videoLiberado', '01');
+    this.videoLiberado = parseInt(localStorage.getItem('videoLiberado'));
     this.countEpisodiosAssistidos = parseInt(localStorage.getItem('episodiosAssistidos'));
   }
 
@@ -38,6 +41,7 @@ export class EpisodioPage {
     // QUANDO O USUÁRIO CLICAR NO PRÓXIMO OU PREV, VAI MANDAR PRO BD A QUANTIDADE DE EPISÓDIOS  ASSISTIDOS + 1
     // APÓS ADICIONAR UM EPISÓDIOASSISTIDO NO BANCO, JOGA NO LOCALSTORAGE O NOVO VALOR
     this.tP.adicionarEpisodioAssistido(this.countEpisodiosAssistidos);
+    this.tP.mostrarBannerEscondido();
     
     this.tP.handleEpisode(ep).then(data => {
       this.proximoEpisodio = data["next"];
@@ -47,6 +51,10 @@ export class EpisodioPage {
     }, error => {
       console.log(error);
     })
+  }
+
+  mostrarBannerEscondido() {
+    this.tP.mostrarBannerEscondido();
   }
 
   esconderBanner(){
