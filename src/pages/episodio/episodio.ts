@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, AlertController } from 'ionic-angular';
 import { TibauProvider } from '../../providers/tibau/tibau';
 
 @IonicPage()
@@ -14,23 +14,24 @@ export class EpisodioPage {
   public episodioAnterior;
   public countEpisodiosAssistidos;
   public animeNome;
-  public videoLiberado;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public tP: TibauProvider, public platform: Platform) {
+  constructor(public alertCtrl:AlertController, public navCtrl: NavController, public navParams: NavParams, public tP: TibauProvider, public platform: Platform) {
     this.episodioTitulo = this.navParams.get('episodioTitulo');
     this.episodioUrl =  this.navParams.get('episodioUrl');
     this.proximoEpisodio = this.navParams.get('episodioSeguinte');
     this.episodioAnterior = this.navParams.get('episodioAnterior');
     this.animeNome = this.navParams.get('animeNome');
 
-    localStorage.setItem('videoLiberado', '01');
-    this.videoLiberado = parseInt(localStorage.getItem('videoLiberado'));
     this.countEpisodiosAssistidos = parseInt(localStorage.getItem('episodiosAssistidos'));
   }
 
   // método que vai marcar esse episódio como visto e adicionar informações dele no banco no nó do deviceid atual
   marcarVisto(){
     this.tP.adicionarVisto(this.animeNome, this.episodioTitulo);
+  }
+
+  linkQuebrado(){
+    this.tP.adicionarLinkQuebrado(this.animeNome, this.episodioTitulo);
   }
 
   changeEpisode(ep){
@@ -60,4 +61,14 @@ export class EpisodioPage {
   esconderBanner(){
     this.tP.esconderBanner();
   }
+
+  botaoDownload(){
+    let alert = this.alertCtrl.create({
+      title: 'Download',
+      subTitle: 'O seu navegador abrirá, pressione seu dedo no vídeo e aparecerá a opção de download do vídeo'
+    });
+    alert.present();
+  }
+
+  
 }

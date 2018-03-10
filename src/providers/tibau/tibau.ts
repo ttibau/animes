@@ -118,13 +118,11 @@ export class TibauProvider {
       // VAI OUVIR E VER SE O USUÁRIO VIU O VÍDEO INTEIRO.
       document.addEventListener('admob.rewardvideo.events.REWARD', () => {
         this.zerarEpisodiosAssistidos();
-        localStorage.setItem('videoLiberado', '01');
         // zerar episodiod assistidos no bd
       });
 
       if(this.platform.is('cordova')){
-        // vou setar o valor do localstorage pra false
-        localStorage.setItem('videoLiberado', '00');
+        
         let alert = this.alertCtrl.create({
           title: 'Atenção',
           subTitle: 'Exibiremos um vídeo de anúncio pois você assistiu 3 episódios, tenha bom senso em nos ajudar a manter o projeto. O contador irá ZERAR após você assistir o vídeo inteiro e o vídeo será liberado.',
@@ -159,6 +157,32 @@ export class TibauProvider {
       })
     })
     return promise;
+  }
+
+  //Vai adicionar ao banco o episódio que está com o link quebrad
+  adicionarLinkQuebrado(nomeAnime, episodioAnime){
+    // Loading
+    let loading = this.loadingCtrl.create({
+      content: 'Carregando anime...'
+    });
+
+    // Alert
+    let alert = this.alertCtrl.create({
+      title: 'Enviado', 
+      subTitle: 'A nossa equipe já foi informada do link quebrado, em no máximo 24h o anime irá retornar, obrigado pela compreensão'
+    });
+
+    loading.present();
+
+    this.db.object('link-quebrado').update({
+      link: nomeAnime + ' - ' + episodioAnime
+    }).then(data => {
+      alert.present();
+      loading.dismiss();
+    }).catch(error => {
+      loading.dismiss();
+      console.log(error);
+    })
   }
 
 

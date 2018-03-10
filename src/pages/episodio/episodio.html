@@ -20,7 +20,7 @@
         <ion-grid>
           <ion-row class="btn-group">
             <ion-col col-4><button block ion-button color="secondary" [disabled]="episodioTitulo === '01'" (click)="changeEpisode(episodioAnterior)"><ion-icon name="arrow-back"></ion-icon></button></ion-col>
-            <ion-col col-4><button block ion-button color="primary"><ion-icon name="cloud-download"></ion-icon></button></ion-col>
+            <ion-col col-4><a block ion-button color="primary" (click)="botaoDownload()" href="{{episodioUrl}}" target="_blank"><ion-icon name="cloud-download"></ion-icon></a></ion-col>
             <ion-col col-4><button block ion-button color="secondary" (click)="changeEpisode(proximoEpisodio)"><ion-icon name="arrow-forward"></ion-icon></button></ion-col>
           </ion-row>
           <ion-row>
@@ -28,7 +28,7 @@
               <button block ion-button color="primary"><ion-icon name="checkmark" (click)="marcarVisto()" class="icone-margin"></ion-icon> Visto</button>
             </ion-col>
             <ion-col col-6>
-              <button ion-button block color="carrot"><ion-icon name="alert" class="icone-margin"></ion-icon> Link quebrado?</button>
+              <button ion-button (click)="linkQuebrado()" block color="carrot"><ion-icon name="alert" class="icone-margin"></ion-icon> Link quebrado?</button>
             </ion-col>
           </ion-row>
         </ion-grid>
@@ -43,7 +43,7 @@
       </ion-card-header>
       <ion-card-content overflow-scroll="true">
         <p class="titulo-episodio">{{ episodioTitulo }}</p>
-        <video *ngIf="videoLiberado === 01" (click)="esconderBanner()" controls="controls" preload="metadata" autoplay="autoplay" [src]="episodioUrl" webkit-playsinline="webkit-playsinline" class="videoPlayer"></video>
+        <video (click)="esconderBanner()" controls="controls" preload="metadata" autoplay="autoplay" [src]="episodioUrl" webkit-playsinline="webkit-playsinline" class="videoPlayer"></video>
       </ion-card-content>
     </ion-card>
   </div>
