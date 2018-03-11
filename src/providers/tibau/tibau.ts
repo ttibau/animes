@@ -174,7 +174,7 @@ export class TibauProvider {
 
     loading.present();
 
-    this.db.object('link-quebrado').update({
+    this.db.object('link-quebrado/' + Date.now()).update({
       link: nomeAnime + ' - ' + episodioAnime
     }).then(data => {
       alert.present();
