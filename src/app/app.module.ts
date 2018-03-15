@@ -17,7 +17,6 @@ import { SuportePage } from '../pages/suporte/suporte';
 import { TibauProvider } from '../providers/tibau/tibau';
 import { OrderModule } from 'ngx-order-pipe';
 import { AdMobFree } from '@ionic-native/admob-free';
-import { UniqueDeviceID } from '@ionic-native/unique-device-id';
 import { AssistidosPage } from '../pages/assistidos/assistidos';
 import { FaqPage } from '../pages/faq/faq';
 import { FavoritosPage } from '../pages/favoritos/favoritos';
@@ -68,8 +67,7 @@ import { FavoritosPage } from '../pages/favoritos/favoritos';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     TibauProvider,
-    AdMobFree,
-    UniqueDeviceID
+    AdMobFree
   ]
 })
 export class AppModule {}

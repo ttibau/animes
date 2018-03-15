@@ -41,7 +41,6 @@ export class EpisodioPage {
     this.countEpisodiosAssistidos++;
     // QUANDO O USUÁRIO CLICAR NO PRÓXIMO OU PREV, VAI MANDAR PRO BD A QUANTIDADE DE EPISÓDIOS  ASSISTIDOS + 1
     // APÓS ADICIONAR UM EPISÓDIOASSISTIDO NO BANCO, JOGA NO LOCALSTORAGE O NOVO VALOR
-    this.tP.adicionarEpisodioAssistido(this.countEpisodiosAssistidos);
     this.tP.mostrarBannerEscondido();
     
     this.tP.handleEpisode(ep).then(data => {

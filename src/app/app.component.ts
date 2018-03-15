@@ -5,7 +5,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { ListaAnimesPage } from '../pages/lista-animes/lista-animes';
 import { HomePage } from '../pages/home/home';
 import { TibauProvider } from '../providers/tibau/tibau';
-import { UniqueDeviceID } from '@ionic-native/unique-device-id';
 import { SuportePage } from '../pages/suporte/suporte';
 import { AssistidosPage } from '../pages/assistidos/assistidos';
 import { FaqPage } from '../pages/faq/faq';
@@ -21,17 +20,10 @@ export class MyApp {
   rootPage:any = HomePage;
   public pages: Array<{ titulo: string, component:any,  icon: string}>;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public tP: TibauProvider, public uniqueDeviceId: UniqueDeviceID) {    
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public tP: TibauProvider) {    
     platform.ready().then(() => {
 
      if(platform.is('cordova')){
-
-      // VERIFICANDO SE O DISPOSITIVO JÁ FOI CADASTRADO NO BANCO
-      this.uniqueDeviceId.get()
-      .then((uuid: any) => {
-        localStorage.setItem('uuid', uuid); 
-        this.tP.checkDeviceID(uuid);
-      })      
       
       // ATIVANDO BANNER ADMOB
       this.tP.mostrarBanner();

@@ -72,48 +72,14 @@ export class TibauProvider {
     return promise;
   }
 
-  //Verifica se o device id já tem no banco, se não tiver, cria um novo
-  checkDeviceID(uuid){
-    let loading = this.loadingCtrl.create({
-      content: 'Carregando...'
-    });
-    loading.present();
-
-    this.db.object('users/' + uuid).valueChanges().subscribe(data => {
-      console.log(data);
-      if(data === null){
-        // Fazer um novo cadastro
-        loading.dismiss();
-        this.db.object('users/' + uuid).update({
-          countAssistidos: 0
-        })
-      } else {
-        loading.dismiss();
-        // Jogar no localStorage o valor atualo do countAssistidos
-        localStorage.setItem('episodiosAssistidos', data["countAssistidos"]);
-      }
-    })
-  }
 
   // Vai zerar a quantidade de episódios assistidos
   zerarEpisodiosAssistidos(){
-    this.db.object('users/' + localStorage.getItem('uuid')).update({
-      countAssistidos: 1
-    });
     localStorage.setItem('episodiosAssistidos', '1');
-  }
-
-  // Vai inserir um novo episódio no usuário
-  adicionarEpisodioAssistido(count){
-    this.db.object('users/' + localStorage.getItem('uuid')).update({
-      countAssistidos: count
-    });
-    localStorage.setItem('episodiosAssistidos', count);
   }
 
   // Vai verificar se a quantidade de episódios assistidos pelo usuário é igual a 3
   verificaCountEpisodios(){
-    
     if(parseInt(localStorage.getItem('episodiosAssistidos')) >= 3){
       // VAI OUVIR E VER SE O USUÁRIO VIU O VÍDEO INTEIRO.
       document.addEventListener('admob.rewardvideo.events.REWARD', () => {
