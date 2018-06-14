@@ -12,6 +12,31 @@ export class TibauProvider {
 
   }
 
+  getLastEpisodes()
+  {
+    let loading = this.loadingCtrl.create({
+      content: 'Carregando episódios...'
+    });
+    loading.present();
+
+    let alertError = this.alertCtrl.create({
+      title: 'Erro!',
+      subTitle: 'Por favor, entre em contato conosco via suporte para que possamos resolver'
+    });
+
+    let promise = new Promise((resolve, reject) => {
+      this.db.list('ultimosEpisodios', ref=> ref.limitToFirst(10)).valueChanges().subscribe(data => {
+        resolve(data);
+        loading.dismiss();
+      }, error => {
+        loading.dismiss();
+        alertError.present();
+        reject(error);
+      })
+    })
+    return promise;
+  }
+
   // Retorna um resolve contendo as letras iniciais dos animes
   getAnimesKeys(){
     let loading = this.loadingCtrl.create({
@@ -140,14 +165,13 @@ export class TibauProvider {
 
     loading.present();
 
-    this.db.object('link-quebrado/' + Date.now()).update({
-      link: nomeAnime + ' - ' + episodioAnime
+    const items = this.db.list('link-quebrado');
+    items.push({
+      anime: nomeAnime,
+      episodio: episodioAnime
     }).then(data => {
       alert.present();
       loading.dismiss();
-    }).catch(error => {
-      loading.dismiss();
-      console.log(error);
     })
   }
 

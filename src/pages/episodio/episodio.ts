@@ -47,14 +47,17 @@ export class EpisodioPage {
       this.proximoEpisodio = data["next"];
       this.episodioAnterior = data["prev"];
       this.episodioTitulo = data["titulo"];
-      this.episodioUrl = data["url"];
+      this.episodioUrl =  data["url"];
     }, error => {
       console.log(error);
     })
   }
 
   mostrarBannerEscondido() {
-    this.tP.mostrarBannerEscondido();
+    if(this.platform.is('cordova')){
+      this.tP.mostrarBannerEscondido();  
+    }
+    
   }
 
   esconderBanner(){

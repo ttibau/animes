@@ -16,12 +16,11 @@
         Principal
       </ion-card-header>
       <ion-card-content>
-        <p>Quer falar conosco e interagir com a comunidade? Acesse  <ion-icon name="help-buoy"></ion-icon> Suporte. 
-          Peça um anime por lá :D  </p>
+        <p>Quer pedir um anime? Acesse o Suporte</p>
         <hr>
-        <p>Todas (ou quase todas) as suas dúvidas, você pode tirar em: <ion-icon name="list-box"></ion-icon>FAQ, é sério, vale muito a pena ler para conhecer um pouco do app.</p>
+        <p>Tire todas ou quase todas as suas dúvidas no F.A.Q.</p>
         <hr>
-        <p>Estamos adicionando em média 200 episódios distintos por dia, peça um anime no Suporte que adicionaremos o quanto antes.</p>
+        <p>Estamos adicionando em média 200 episódios distintos por dia, em breve seremos o maior do Brasil.</p>
       </ion-card-content>
     </ion-card>
   </div>
@@ -30,9 +29,12 @@
       <ion-card>
         <ion-card-header>
           Lançamentos
+          <p>Últimos episódios adicionados</p>
         </ion-card-header>
         <ion-card-content>
-          <p class="aviso">Os lançamentos estarão prontos na próxima versão do app, enquanto isso navegue no menu de animes. </p>
+          <ion-item style="background-color: #2c3e50; color: #ffffff" *ngFor="let episodio of lastEpisodes">
+            {{ episodio.nome }} - {{ episodio.episodio }}
+          </ion-item>
         </ion-card-content>
       </ion-card>
     </div>
