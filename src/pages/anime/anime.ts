@@ -37,7 +37,6 @@ export class AnimePage {
 
   // Quando favoritar um anime, adicionar ao localstorage esse anime favoritado
   favoritarAnime(){
-    if(this.platform.is('cordova')){
       let alert = this.alertCtrl.create({
         title: 'Atenção',
         subTitle: 'Esta opção estará inclusa no app na próxima versão, dependendo da demanda. Para agilizar, peça-nos no suporte.',
@@ -51,11 +50,10 @@ export class AnimePage {
           }]
       });
       alert.present();
-    }
   }
 
  goToEpisode(titulo, url, prev, next) {
-   this.tibauProvider.mostrarInterstitial();
+    this.tibauProvider.mostrarInterstitial();
    this.navCtrl.push(EpisodioPage, {
      animeNome: this.nome,
      episodioUrl: url, 

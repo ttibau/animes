@@ -23,7 +23,7 @@ export class MyApp {
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public tP: TibauProvider) {    
     platform.ready().then(() => {
 
-     if(platform.is('cordova')){
+     
       
       // ATIVANDO BANNER ADMOB
       this.tP.mostrarBanner();
@@ -37,7 +37,7 @@ export class MyApp {
         .startInit("2ac55b01-f584-40e0-abca-8628a78ecb70", "968314697865")
         .handleNotificationOpened(notificationOpenedCallback)
         .endInit();
-     }
+     
      
       statusBar.styleDefault();
       splashScreen.hide();

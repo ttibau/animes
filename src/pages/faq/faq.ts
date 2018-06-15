@@ -9,9 +9,7 @@ import { TibauProvider } from '../../providers/tibau/tibau';
 export class FaqPage {
 
   constructor(public platform: Platform, public tp: TibauProvider, public navCtrl: NavController, public navParams: NavParams) {
-    if(this.platform.is('cordova')){
       this.tp.mostrarInterstitial();
-    }
   }
 
   ionViewDidLoad() {

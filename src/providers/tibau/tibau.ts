@@ -25,7 +25,7 @@ export class TibauProvider {
     });
 
     let promise = new Promise((resolve, reject) => {
-      this.db.list('ultimosEpisodios', ref=> ref.limitToFirst(10)).valueChanges().subscribe(data => {
+      this.db.list('ultimosEpisodios', ref => ref.orderByChild('timestamp').limitToFirst(12)).valueChanges().subscribe(data => {
         resolve(data);
         loading.dismiss();
       }, error => {
@@ -112,7 +112,7 @@ export class TibauProvider {
         // zerar episodiod assistidos no bd
       });
 
-      if(this.platform.is('cordova')){
+  
         
         let alert = this.alertCtrl.create({
           title: 'Atenção',
@@ -127,7 +127,7 @@ export class TibauProvider {
             }]
         });
         alert.present();
-      }
+      
     }
   }
 
@@ -178,7 +178,6 @@ export class TibauProvider {
 
   // Adicionar episódio como visto no bd
   adicionarVisto(animeNome, episodioNumero){
-    if(this.platform.is('cordova')){
       let alert = this.alertCtrl.create({
         title: 'Atenção',
         subTitle: 'A adição de animes visto estará pronto na próxima versão do app que sairá nas próximas versões, tenha paciência.',
@@ -192,7 +191,6 @@ export class TibauProvider {
           }]
       });
       alert.present();
-    }
   }
 
 
@@ -206,7 +204,7 @@ export class TibauProvider {
   // ============ configurações admob ==================
 
   mostrarBanner(){
-    if(this.platform.is('cordova')){
+
       const bannerConfig: AdMobFreeBannerConfig = {
         isTesting: false,
         autoShow: true,
@@ -214,7 +212,7 @@ export class TibauProvider {
        };
       this.admobFree.banner.config(bannerConfig);
       this.admobFree.banner.prepare();
-    }
+
   }
 
   esconderBanner(){

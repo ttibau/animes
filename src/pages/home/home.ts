@@ -9,9 +9,11 @@ import { TibauProvider } from '../../providers/tibau/tibau';
 })
 export class HomePage {
   public lastEpisodes;
+  private lastEp
   constructor(public navCtrl: NavController, public menu: MenuController, public tP: TibauProvider) {
     this.tP.getLastEpisodes().then(data => {
-      this.lastEpisodes = data;
+      this.lastEp = data;
+      this.lastEpisodes = this.lastEp.reverse();
       console.log(this.lastEpisodes);
     })
   }

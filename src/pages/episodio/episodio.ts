@@ -21,7 +21,6 @@ export class EpisodioPage {
     this.proximoEpisodio = this.navParams.get('episodioSeguinte');
     this.episodioAnterior = this.navParams.get('episodioAnterior');
     this.animeNome = this.navParams.get('animeNome');
-
     this.countEpisodiosAssistidos = parseInt(localStorage.getItem('episodiosAssistidos'));
   }
 
@@ -54,14 +53,16 @@ export class EpisodioPage {
   }
 
   mostrarBannerEscondido() {
-    if(this.platform.is('cordova')){
+  
       this.tP.mostrarBannerEscondido();  
-    }
+    
     
   }
 
   esconderBanner(){
-    this.tP.esconderBanner();
+      this.tP.esconderBanner();  
+    
+    
   }
 
   botaoDownload(){
