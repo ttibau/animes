@@ -16,11 +16,10 @@
         Principal
       </ion-card-header>
       <ion-card-content>
-        <p>Quer pedir um anime? Acesse o Suporte</p>
-        <hr>
-        <p>Tire todas ou quase todas as suas dúvidas no F.A.Q.</p>
-        <hr>
-        <p>Estamos adicionando em média 200 episódios distintos por dia, em breve seremos o maior do Brasil.</p>
+        <div *ngFor="let mensagem of mensagens">
+            <p>{{ mensagem.texto }}</p>
+            <hr>
+        </div>
       </ion-card-content>
     </ion-card>
   </div>

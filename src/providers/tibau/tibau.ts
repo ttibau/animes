@@ -12,6 +12,31 @@ export class TibauProvider {
 
   }
 
+  getMessages()
+  {
+    let loading = this.loadingCtrl.create({
+      content: 'Carregando mensagens...'
+    });
+    loading.present();
+
+    let alertError = this.alertCtrl.create({
+      title: 'Erro!',
+      subTitle: 'Por favor, entre em contato conosco via suporte para que possamos resolver'
+    });
+
+    let promise = new Promise((resolve, reject) => {
+      this.db.list('mensagens').valueChanges().subscribe(mensagens => {
+        resolve(mensagens);
+        loading.dismiss();
+      }, error => {
+        loading.dismiss();
+        alertError.present();
+        reject(error);
+      });
+    });
+    return promise;
+  }
+
   getLastEpisodes()
   {
     let loading = this.loadingCtrl.create({
@@ -25,7 +50,7 @@ export class TibauProvider {
     });
 
     let promise = new Promise((resolve, reject) => {
-      this.db.list('ultimosEpisodios', ref => ref.orderByChild('timestamp').limitToFirst(12)).valueChanges().subscribe(data => {
+      this.db.list('ultimosEpisodios', ref => ref.orderByChild('dateReverse').limitToFirst(12)).valueChanges().subscribe(data => {
         resolve(data);
         loading.dismiss();
       }, error => {
