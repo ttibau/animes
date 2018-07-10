@@ -31,7 +31,7 @@
           <p>Últimos episódios adicionados</p>
         </ion-card-header>
         <ion-card-content>
-          <ion-item style="background-color: #2c3e50; color: #ffffff" *ngFor="let episodio of lastEpisodes">
+          <ion-item style="background-color: #2c3e50; color: #ffffff" *ngFor="let episodio of lastEpisodes" (click)="goToEpisode(episodio)">
             {{ episodio.nome }} - {{ episodio.episodio }}
           </ion-item>
         </ion-card-content>

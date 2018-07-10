@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { MenuController } from 'ionic-angular';
 import { TibauProvider } from '../../providers/tibau/tibau';
-
+import { EpisodioPage } from '../episodio/episodio';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -24,6 +24,22 @@ export class HomePage {
 
   ionViewWillEnter(){
     this.menu.enable(true);
+  }
+
+  
+  goToEpisode(ep)
+  {
+    
+    this.tP.goToEpisode(ep.nome, ep.episodio).then(episodio => {
+      
+      this.navCtrl.setRoot(EpisodioPage, {
+        animeNome: ep['nome'],
+        episodioUrl: episodio['url'], 
+        episodioTitulo: episodio['titulo'],
+        episodioAnterior: episodio['prev'],
+        episodioSeguinte: episodio['next']
+     })
+    })
   }
 
 }

@@ -4,12 +4,37 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { LoadingController, Platform, AlertController } from 'ionic-angular';
 import { AdMobFree, AdMobFreeBannerConfig, AdMobFreeRewardVideoConfig, AdMobFreeInterstitialConfig } from '@ionic-native/admob-free';
 import { ToastController } from 'ionic-angular';
+import { NativeStorage } from '@ionic-native/native-storage';
 
 @Injectable()
 export class TibauProvider {
+  public episodiosVistos = [];
+  public episodioAtual;
 
-  constructor(public toastCtrl: ToastController, public alertCtrl: AlertController, public platform: Platform, public http: HttpClient, private db: AngularFireDatabase, private loadingCtrl: LoadingController, private admobFree: AdMobFree) {
+  constructor(public toastCtrl: ToastController, public alertCtrl: AlertController, public platform: Platform,
+   public http: HttpClient, private db: AngularFireDatabase, private loadingCtrl: LoadingController, private admobFree: AdMobFree,
+   public storage: NativeStorage) {
 
+  }
+
+  goToEpisode(nome, episodio)
+  {
+    let loading = this.loadingCtrl.create({
+      content: 'Carregando episódio...'
+    });
+    loading.present();
+
+    let promise = new Promise((resolve, reject) => {
+      let letra = nome.charAt(0);
+      this.db.object('animes/' +  letra + '/'+ nome +'/' + '/episodios/' + episodio).valueChanges().subscribe(episodio => {
+        loading.dismiss();
+        resolve(episodio);
+      }, error => {
+        loading.dismiss();
+        reject(error);
+      })
+    });
+    return promise;
   }
 
   getMessages()
@@ -189,11 +214,13 @@ export class TibauProvider {
     });
 
     loading.present();
-
-    const items = this.db.list('link-quebrado');
-    items.push({
+    const data = Date.now();
+    const items = this.db.object('link-quebrado/' +  data);
+    items.update({
       anime: nomeAnime,
-      episodio: episodioAnime
+      episodio: episodioAnime,
+      data: data,
+      dateReverse: 0 - data
     }).then(data => {
       alert.present();
       loading.dismiss();
@@ -201,24 +228,55 @@ export class TibauProvider {
   }
 
 
-  // Adicionar episódio como visto no bd
+  
   adicionarVisto(animeNome, episodioNumero){
-      let alert = this.alertCtrl.create({
-        title: 'Atenção',
-        subTitle: 'A adição de animes visto estará pronto na próxima versão do app que sairá nas próximas versões, tenha paciência.',
-        buttons: [
-          {
-            text: 'OK',
-            role: 'ok',
-            handler: () => {
-              this.mostrarInterstitial();
-            }
-          }]
-      });
-      alert.present();
+    
+    let alert = this.alertCtrl.create({
+      title: 'Atenção',
+      subTitle: 'O anime foi marcado como visto com sucesso!',
+    });
+    
+    let promise = new Promise((resolve, reject) => {
+      this.storage.getItem('episodiosAssistidos').then(data => {
+        console.log('Já tenho episódios assistidos: ', data);
+        this.episodiosVistos = JSON.parse(data); 
+        this.episodioAtual = { anime: animeNome, episodio: episodioNumero };
+        this.episodiosVistos.push(this.episodioAtual);
+        this.storage.setItem('episodiosAssistidos', JSON.stringify(this.episodiosVistos)).then(() => {
+          resolve('sucesso');
+          alert.present();
+        });
+      }, error => {
+        if(error.code === 2){
+          console.log('Não tenho episódios assistidos');
+          this.episodioAtual = { anime: animeNome, episodio: episodioNumero };
+          this.episodiosVistos.push(this.episodioAtual);
+          console.log(this.episodiosVistos);
+          this.storage.setItem('episodiosAssistidos', JSON.stringify(this.episodiosVistos)).then(() => {
+            resolve('sucesso');
+            alert.present();
+          });
+        } else {
+          reject('error');
+        }
+      })
+    });
+    return promise;
   }
 
-
+  // Retorna os episódios vistos
+  episodiosAssistidos()
+  {
+   let promise = new Promise ((resolve, reject) => {
+    this.storage.getItem('episodiosAssistidos').then(data => {
+      console.log(data.value);
+      resolve(JSON.parse(data));
+    }, error => {
+      reject(error);
+    });
+   });
+   return promise;
+  }
 
 
 

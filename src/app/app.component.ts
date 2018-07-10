@@ -54,7 +54,7 @@ export class MyApp {
   }
 
   goToPage(page){
-    this.nav.push(page)
+    this.nav.setRoot(page)
   }
 }
 

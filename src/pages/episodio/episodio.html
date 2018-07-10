@@ -25,7 +25,7 @@
           </ion-row>
           <ion-row>
             <ion-col col-6>
-              <button block ion-button color="primary"><ion-icon name="checkmark" (click)="marcarVisto()" class="icone-margin"></ion-icon> Visto</button>
+              <button (click)="marcarVisto()" block ion-button color="primary"><ion-icon name="checkmark" class="icone-margin"></ion-icon> Visto</button> 
             </ion-col>
             <ion-col col-6>
               <button ion-button (click)="linkQuebrado()" block color="carrot"><ion-icon name="alert" class="icone-margin"></ion-icon> Link quebrado?</button>
@@ -43,7 +43,9 @@
       </ion-card-header>
       <ion-card-content overflow-scroll="true">
         <p class="titulo-episodio">{{ episodioTitulo }}</p>
-        <video (click)="esconderBanner()" controls="controls" autoplay="autoplay" preload="metadata" [src]="episodioUrl" webkit-playsinline="webkit-playsinline" class="videoPlayer"></video>
+        <!--
+           <video controls="controls" autoplay="autoplay" preload="metadata" [src]="episodioUrl" webkit-playsinline="webkit-playsinline" class="videoPlayer"></video> -->
+        <button ion-button full (click)="playVideo()"><ion-icon name="videocam" style="margin-right: 5px;"></ion-icon> Assistir</button>
       </ion-card-content>
     </ion-card>
   </div>

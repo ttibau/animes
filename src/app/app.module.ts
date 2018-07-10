@@ -20,6 +20,10 @@ import { AdMobFree } from '@ionic-native/admob-free';
 import { AssistidosPage } from '../pages/assistidos/assistidos';
 import { FaqPage } from '../pages/faq/faq';
 import { FavoritosPage } from '../pages/favoritos/favoritos';
+import { NativeStorage } from '@ionic-native/native-storage';
+import { StreamingMedia } from '@ionic-native/streaming-media';
+
+
 
 @NgModule({
   declarations: [
@@ -67,7 +71,9 @@ import { FavoritosPage } from '../pages/favoritos/favoritos';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     TibauProvider,
-    AdMobFree
+    AdMobFree,
+    NativeStorage,
+    StreamingMedia
   ]
 })
 export class AppModule {}
